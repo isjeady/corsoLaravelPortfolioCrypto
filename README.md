@@ -22,6 +22,23 @@ git clone https://github.com/isjeady/corsoLaravelPortfolioCrypto.git
 cd corsoLaravelPortfolioCrypto\
 ```
 
+## Installiamo le Dipendenze
+
+- Ora sei all'interno della cartella del project lancia il comando
+```
+composer install
+```
+per installare tutte le dipendenze,se il non hai composer installalo, [Clicca Qui](https://getcomposer.org/download/).
+Per installare tutto avrà bisogno di un po di tempo.
+
+- Esegui il Comando
+```
+npm install
+```
+per installare tutte le dipendenze,se il non hai npm installa Node Js, [Clicca Qui](https://nodejs.org/en/download/).
+Per installare tutto avrà bisogno di un po di tempo.
+
+
 ## Configuriamo il file di Config di Laravel .env
 
 - Copia o Duplica il file .env.backup in un file rinominandolo .env oppure lancia il seguente comando
@@ -48,7 +65,7 @@ Se hai configurato correttamente la connessione non dovresti avere problemi in q
 
 - Importare i dati all'interno del Database Sql,esegui il comando:
 ```
-php artisan db:seed
+php artisan db:seed --class=ImportSqlSeeder
 ```
 - Ora possiamo lanciare il server Laravel con il comando
 
