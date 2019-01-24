@@ -1,0 +1,27 @@
+TRUNCATE TABLE `cryptocurrencies`;
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (1, 'ethereum', 'Ethereum', 'ETH', 'https://poloniex.com/', 2.7000, 199.3866, 0, 538.3400, 0, -3, '2017-12-21 13:49:22', '2018-10-01 07:07:12');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (2, 'ripple', 'XRP', 'XRP', 'https://www.bitrex.com', 1529.0000, 0.5044, 0, 771.2500, 0, 6, '2017-12-20 19:10:34', '2018-10-01 07:07:12');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (3, 'binance-coin', 'Binance Coin', 'BNB', 'https://www.binance.com/', 50.0000, 8.5878, 0, 429.3900, 1, -2, '2017-12-21 14:05:31', '2018-10-01 07:07:12');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (4, 'bitcoin', 'Bitcoin', 'BTC', 'https://www.bitrex.com', 0.0700, 5717.7297, 0, 400.2400, 1, -1, '2017-12-20 17:43:22', '2018-10-01 07:07:12');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (5, 'dogecoin', 'Dogecoin', 'DOGE', 'https://bittrex.com/', 50000.0000, 0.0052, 0, 259.8700, 3, 3, '2017-12-21 10:33:32', '2018-10-01 07:07:12');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (6, 'stellar', 'Stellar', 'XLM', 'https://bittrex.com/', 500.0000, 0.2253, 0, 112.6400, 2, -3, '2017-12-21 13:52:07', '2018-10-01 07:07:12');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (7, 'bankera', 'Bankera', 'BNK', 'https://bankera.com/', 50000.0000, 0.0020, 0, 99.0900, 0, -7, '2017-12-21 13:46:10', '2018-10-01 07:07:13');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (9, 'sprouts', 'Sprouts', 'SPRTS', 'https://www.coinexchange.io/', 271154.0000, 0.0001, 0, 27.1154, 0, 0, '2017-12-21 13:54:09', '2017-12-21 15:46:28');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (11, 'Eth', 'eth', 'ETH', '', 5000.0000, 1.0000, 1, 5000.0000, 0, 0, '2018-06-27 09:56:36', '2018-10-01 07:07:12');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (12, 'siacoin', 'Siacoin', 'SC', 'https://bittrex.com/', 1000.0000, 0.0054, 0, 5.4500, 4, -6, '2018-09-30 17:03:05', '2018-10-01 07:07:13');
+INSERT INTO `cryptocurrencies` (`id`, `name_id`, `name`, `symbol`, `site_store`, `my_token`, `price`, `my_price`, `my_gain`, `percent_change_24h`, `percent_change_7d`, `created_at`, `updated_at`) VALUES (13, 'nem', 'NEM', 'XEM', 'https://bittrex.com/', 170.0400, 0.0833, 0, 14.1600, 1, -2, '2018-09-30 17:03:36', '2018-10-01 07:07:13');
+
+
+TRUNCATE TABLE `audit_balances`;
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (1, 243.5900, '2018-10-01 09:31:46', '2018-10-01 09:31:46');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (2, 253.3700, '2018-10-01 10:35:04', '2018-10-01 10:35:04');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (3, 253.3700, '2018-10-01 10:35:07', '2018-10-01 10:35:07');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (4, 253.3700, '2018-10-01 10:35:12', '2018-10-01 10:35:12');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (5, 253.3700, '2018-10-01 10:35:14', '2018-10-01 10:35:14');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (6, 253.3700, '2018-10-01 10:35:16', '2018-10-01 10:35:16');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (7, 253.3700, '2018-10-01 10:35:17', '2018-10-01 10:35:17');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (8, -253.3700, '2018-10-01 10:35:19', '2018-10-01 10:35:19');
+INSERT INTO `audit_balances` (`id`, `balance`, `created_at`, `updated_at`) VALUES (9, -253.3700, '2018-10-01 10:35:20', '2018-10-01 10:35:20');
+
+TRUNCATE TABLE `users`;
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES (2, 'admin', 'admin@admin.com', '$2y$10$WVxSQ7kdy/idql0YbXDwcOAYQHrSb5WgPl6ucC7qhVBrAIhfe4z8i', 'zUYqmFtlRVVOzI1Tsj90A0HVANucoYl5RpmrYugaUDZB5asuvkDyKqsSxTA2', '2019-01-24 08:15:41', '2019-01-24 08:15:41');

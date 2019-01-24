@@ -28,7 +28,7 @@ cd corsoLaravelPortfolioCrypto\
 ```
 cp .env.backup .env
 ```
-- Apri il file con un editor di testo e modifica le seguenti righe con i tuoi parametri di connession al Db Mysql,
+- Apri il file con un editor di testo e modifica le seguenti righe con i tuoi parametri di connessione al Db Mysql,
 Nome Database,Username e Password.Il Database lo devi creare manualmente,puoi utilizzare un tool che utilizzo io
 nei video per facilitarti la creazione ovvero  [Heidisql](https://www.heidisql.com/)
 
@@ -56,7 +56,7 @@ php artisan db:seed
 php artisan serve
 ```
 - Collegati all'indirizzo [http://localhost:8000](http://localhost:8000)
-- Clicca in alto a destra,Login.
+- Nella Pagina iniziale clicca in alto a destra per effettuare la Login.
 ```
 username: admin@admin.com
 password: adminadmin
