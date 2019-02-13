@@ -22,7 +22,7 @@ class UpdateAllCoinJob implements ShouldQueue
      * @return void
      */
     public function __construct(){
-       
+
     }
 
     /**
@@ -37,11 +37,15 @@ class UpdateAllCoinJob implements ShouldQueue
 
     public static function updateCryptoAPI($notifyUser){
 
-        $cryptos = CryptoCurrencies::orderBy('my_gain','desc')->get();
+        //aggiorno solo quelle più vecchie di 24h;
+        $cryptos = CryptoCurrencies::orderBy('my_gain','desc')->where('updated_at', '<', Carbon::now()->subDay())->get();
         $total = 0;
-        
-        $cnmkt = env('API_COINMARKET_MARKETS') . "?limit=3000&convert=EUR";
-        $fgcs = json_decode(file_get_contents($cnmkt), true);
+
+        //d($cryptos);
+
+        //CHIAVE TUA LA TROVI REGISTRANTODI qui https://pro.coinmarketcap.com/account
+        //nel riquadro api-key trovi la tua chiave
+        //https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?CMC_PRO_API_KEY=CHIAVE_TUA&symbol=BTC&convert=EUR
 
         foreach($cryptos as $crypto){
             $crypto['my_gain'] = $crypto['price'] * $crypto['my_token'];
@@ -49,24 +53,21 @@ class UpdateAllCoinJob implements ShouldQueue
             $crypto['percent_change_24h'] = 0;
 
             if(!$crypto['my_price']){
-                if($crypto['name_id'] == 'bankera'){
-                    $cnmkt = env('API_COINMARKET_MARKETS') . "/2842/?convert=EUR";
-                    $fgcsC = json_decode(file_get_contents($cnmkt), true);
-                    UpdateAllCoinJob::saveCryptoCurrency($crypto,$fgcsC['data']);
+                $endPoint = env('API_COINMARKET_MARKETS') . '?CMC_PRO_API_KEY='.env('API_COINMARKET_KEY')."&convert=EUR&symbol=".$crypto['symbol'];
+                $cryptoCoin = json_decode(file_get_contents($endPoint), true);
+
+                //crypto trovata
+                if($cryptoCoin['data'] && $cryptoCoin['status']['error_message'] == null){
+                    $symbol = $crypto['symbol'];
+                    UpdateAllCoinJob::saveCryptoCurrency($crypto,$cryptoCoin['data'][$symbol]);
+                //crypto non trovata
                 }else{
-                    foreach($fgcs['data'] as $fgc){
-                        if($fgc['website_slug'] == $crypto['name_id']) {
-                            UpdateAllCoinJob::saveCryptoCurrency($crypto,$fgc);
-                            break;
-                        }
-                    }
+                    //crypto non trovata
                 }
             }
 
             $crypto->save();
-
             $total += $crypto['my_gain'];
-            
         }
 
         //BALANCE UPDATE
@@ -88,21 +89,26 @@ class UpdateAllCoinJob implements ShouldQueue
     }
 
     public static function saveCryptoCurrency($crypto,$fgc){
-        logger($fgc['id'] . " -- " . $crypto['name_id'] ." -- ".$fgc['website_slug']);
+        try{
+            //dd($fgc);
+            logger($fgc);
 
-        $crypto['symbol']  = $fgc['symbol'];
-        $crypto['name']    = $fgc['name'];
+            $crypto['symbol']  = $fgc['symbol'];
+            $crypto['name']    = $fgc['name'];
 
-        foreach($fgc['quotes'] as $key=>$quota){
-            //logger($quota);
-            //logger($key);
-            if($key == 'EUR'){
-                $crypto['my_gain'] = round($quota['price'] * $crypto['my_token'],2);
-                $crypto['price']   = round($quota['price'],4);
-                $crypto['percent_change_7d'] =  ($quota["percent_change_7d"]  != null) ? $quota["percent_change_7d"] : 0;
-                $crypto['percent_change_24h'] = ($quota["percent_change_24h"] != null) ? $quota["percent_change_24h"] : 0;
-                break;
+            foreach($fgc['quote'] as $key=>$quota){
+                //logger($quota);
+                //logger($key);
+                if($key == 'EUR'){
+                    $crypto['my_gain'] = round($quota['price'] * $crypto['my_token'],2);
+                    $crypto['price']   = round($quota['price'],4);
+                    $crypto['percent_change_7d'] =  ($quota["percent_change_7d"]  != null) ? $quota["percent_change_7d"] : 0;
+                    $crypto['percent_change_24h'] = ($quota["percent_change_24h"] != null) ? $quota["percent_change_24h"] : 0;
+                    break;
+                }
             }
+        }catch(\Exception $ex){
+
         }
     }
 
