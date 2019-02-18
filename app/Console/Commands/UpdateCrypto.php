@@ -55,7 +55,7 @@ class UpdateCrypto extends Command
         $bar->finish();
         */
         UpdateAllCoinJob::dispatch(true);
-        $this->line("");
+        $this->line("------------------------");
         $this->line("Update Crypto terminato");
     }
 }

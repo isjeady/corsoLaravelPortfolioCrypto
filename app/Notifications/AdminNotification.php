@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use Carbon\Carbon;
 use App\Model\AuditBalances;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -13,14 +14,16 @@ class AdminNotification extends Notification
 {
     use Queueable;
 
+    protected $subject;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($subject ='')
     {
-        //
+         //
+         $this->subject=$subject;
     }
 
     /**
