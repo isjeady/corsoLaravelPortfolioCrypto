@@ -79,13 +79,13 @@
 
             <div class="row">
                 <div style="width:70%;">
-                    {!! $chartjsGain->render() !!}
+                    {!! $chartjsBalance->render() !!}
                 </div>
             </div>
 
             <div class="row">
                 <div style="width:70%;">
-                    {!! $chartjsBalance->render() !!}
+                    {!! $chartjsGain->render() !!}
                 </div>
             </div>
             <!-- /.row -->
