@@ -28,7 +28,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule){
         
         logger("Start Scheduler");
-        $schedule->command('updatecrypto')->daily('11:00'); //corrisponde alle 12 sul server lanciare date -u sul server per vedere l'orario
+        //corrisponde alle 12 sul server lanciare date -u sul server per vedere l'orario
+        $schedule->command('updatecrypto')->dailyAt('11:00'); 
         
     }
 
