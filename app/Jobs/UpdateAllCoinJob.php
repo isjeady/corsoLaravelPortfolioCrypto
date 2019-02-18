@@ -20,11 +20,9 @@ class UpdateAllCoinJob implements ShouldQueue
 
     protected $notifyUser = false;
     
-    public function __construct(){
-    
-    
+    public function __construct($notifyUser){
+       $this->notifyUser = $notifyUser;
     }
-
 
     public function handle(){
         logger("Start Job:" . Carbon::now()->format('H:m:s'));
