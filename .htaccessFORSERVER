@@ -1,0 +1,15 @@
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTPS} !=on
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[0-9a-zA-Z_-]+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP_HOST} ^yoursite.it [OR]
+#RewriteCond %{HTTP_HOST} ^www.yoursite.it [NC]
+#RewriteRule ^(.*)$ https://www.yoursite.it/$1 [L,R=301]
+
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -36,12 +36,12 @@ class UpdateAllCoinJob implements ShouldQueue
     }
 
     public static function updateCryptoAPI($notifyUser){
-
+        logger("updateCryptoAPI");
         //aggiorno solo quelle più vecchie di 24h;
         $cryptos = CryptoCurrencies::orderBy('my_gain','desc')->where('updated_at', '<', Carbon::now()->subDay())->get();
         $total = 0;
 
-        //d($cryptos);
+        logger($cryptos);
 
         //CHIAVE TUA LA TROVI REGISTRANTODI qui https://pro.coinmarketcap.com/account
         //nel riquadro api-key trovi la tua chiave
@@ -58,11 +58,13 @@ class UpdateAllCoinJob implements ShouldQueue
 
                 //crypto trovata
                 if($cryptoCoin['data'] && $cryptoCoin['status']['error_message'] == null){
+                    logger($cryptoCoin['data'][$symbol]);
                     $symbol = $crypto['symbol'];
                     UpdateAllCoinJob::saveCryptoCurrency($crypto,$cryptoCoin['data'][$symbol]);
                 //crypto non trovata
                 }else{
                     //crypto non trovata
+                    logger("crypto non trovata:" . $crypto['symbol']);
                 }
             }
 
