@@ -154,7 +154,7 @@
                             @endif
 
                             <div class="form-group">
-                                {!! Form::label('My Price') !!}
+                                {!! Form::label('Fix My Price') !!}
                                 {{ Form::checkbox('my_price', 1, $recordToEdit->my_price) }}
                             </div>
 
@@ -170,7 +170,7 @@
 
 
                             <div class="form-group">
-                                {!! Form::label('Price') !!}
+                                {!! Form::label('Price Buy Token') !!}
                                 {!! Form::text('price', $recordToEdit->price,
                                 array('',
                                 'class'=>'form-control',

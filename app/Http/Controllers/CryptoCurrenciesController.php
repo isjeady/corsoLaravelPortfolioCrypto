@@ -19,9 +19,9 @@ class CryptoCurrenciesController extends Controller
 
         $cryptoCurrenciesValues = CryptoCurrencies::orderBy('my_gain','desc')->paginate(10);
         $date = Carbon::now()->format("d-m-Y");
-        
+
         return view('pages.cryptocurrencies.list', compact('cryptoCurrenciesValues','date'));
-        
+
     }
 
     public function new(Request $request){
@@ -78,12 +78,19 @@ class CryptoCurrenciesController extends Controller
             $recordToEdit = CryptoCurrencies::where('id', $request->get('id'))->get()->first();
             if($recordToEdit){
                 $myCrypto = $recordToEdit;
+
+
+
             }else{
                 return \Redirect::route('cryptocurrenciesRoute');
             }
         }else{
             //Save
             $myCrypto = new CryptoCurrencies();
+            //Total e Gain
+            $myCrypto->total = $myCrypto->my_token * $myCrypto->price;
+            $myCrypto->my_gain = $myCrypto->current_total - $myCrypto->total;
+            $myCrypto->price = $request->get('price') == null ? 0 : $request->get('price');
         }
 
         $myCrypto->name = $request->get('name');
@@ -94,15 +101,10 @@ class CryptoCurrenciesController extends Controller
         $myCrypto->site_store = $request->get('site_store') == null ? "" : $request->get('site_store');
         $myCrypto->my_price = $request->get('my_price') == null ? false : $request->get('my_price');
 
-        $myCrypto->price = $request->get('price') == null ? 0 : $request->get('price');
         if($myCrypto->my_price){
             $myCrypto->current_total = $myCrypto->total;
             $myCrypto->current_price = $myCrypto->price;
         }
-       
-        //Total e Gain
-        $myCrypto->total = $myCrypto->my_token * $myCrypto->price;
-        $myCrypto->my_gain = $myCrypto->current_total - $myCrypto->total;
 
         if($myCrypto->my_price){
             $myCrypto->current_total = $myCrypto->total;
